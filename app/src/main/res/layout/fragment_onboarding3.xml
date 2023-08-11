@@ -11,6 +11,36 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="5dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/lp3i"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="LP3I"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="5dp"
+                android:text="Check-In"
+                android:textColor="@color/blue"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/lottie"
             android:layout_width="wrap_content"
@@ -20,16 +50,25 @@
             app:lottie_autoPlay="true"
             app:lottie_loop="true"/>
 
+        <TextView
+            android:id="@+id/tittle"
+            android:layout_below="@id/lottie"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Membuat kinerja karyawan lebih baik"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textSize="20sp"/>
 
         <TextView
             android:id="@+id/text"
-            android:layout_below="@id/lottie"
+            android:layout_below="@id/tittle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Pantau kinerja Anda secara\n real-time dan mudah. Ayo mulai!"
             android:gravity="center"
-            android:textColor="@color/blue"
-            android:textSize="20sp"/>
+            android:textSize="15sp"/>
 
         <Button
             android:id="@+id/btnMasuk"

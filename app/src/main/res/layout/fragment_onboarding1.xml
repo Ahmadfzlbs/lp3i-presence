@@ -11,6 +11,36 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="5dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/lp3i"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="LP3I"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="5dp"
+                android:text="Check-In"
+                android:textColor="@color/blue"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/lottie"
             android:layout_width="wrap_content"
@@ -21,13 +51,24 @@
             app:lottie_loop="true"/>
 
         <TextView
+            android:id="@+id/text"
             android:layout_below="@id/lottie"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Manajemen kehadiran karyawan\n Anda dengan fitur kehadiran\n terintegrasi"
+            android:text="Buat presensi dengan mudah"
+            android:textColor="@color/black"
+            android:textStyle="bold"
             android:gravity="center"
-            android:textColor="@color/blue"
             android:textSize="20sp"/>
+
+        <TextView
+            android:layout_below="@id/text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Manajemen kehadiran karyawan\n dengan fitur kehadiran\n terintegrasi"
+            android:gravity="center"
+            android:textSize="15sp"/>
     </RelativeLayout>
 
 </FrameLayout>

@@ -79,7 +79,7 @@ class LoginActivity : AppCompatActivity() {
                                         }
                                     }
                                 } else {
-                                    val i = Intent(this, MainActivity::class.java)
+                                    val i = Intent(this, MenuActivity::class.java)
                                     startActivity(i)
                                     finish()
                                 }

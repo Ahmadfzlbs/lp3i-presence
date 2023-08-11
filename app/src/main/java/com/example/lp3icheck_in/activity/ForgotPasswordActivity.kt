@@ -15,6 +15,7 @@ import androidx.core.content.getSystemService
 import com.example.lp3icheck_in.R
 import com.example.lp3icheck_in.custom.CustomBottomSheetFragment
 import com.example.lp3icheck_in.databinding.ActivityForgotPasswordBinding
+import com.example.lp3icheck_in.service.NetworkManager
 import com.google.firebase.auth.FirebaseAuth
 import com.thekhaeng.pushdownanim.PushDownAnim
 import kotlinx.android.synthetic.main.activity_forgot_password.btnReset
@@ -24,6 +25,7 @@ class ForgotPasswordActivity : AppCompatActivity() {
 
     private var auth: FirebaseAuth = FirebaseAuth.getInstance()
     private lateinit var binding: ActivityForgotPasswordBinding
+    private lateinit var connectivityManager: NetworkManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +38,20 @@ class ForgotPasswordActivity : AppCompatActivity() {
             val bottomSheetFragment = CustomBottomSheetFragment()
             bottomSheetFragment.isCancelable = false
             bottomSheetFragment.show(supportFragmentManager, bottomSheetFragment.tag)
+        }
+
+        val bottomSheetFragment = CustomBottomSheetFragment()
+        bottomSheetFragment.isCancelable = false
+
+        connectivityManager = NetworkManager(this)
+        connectivityManager.observe(this){ isConnected ->
+            if(!isConnected){
+                if(!bottomSheetFragment.isVisible)
+                    bottomSheetFragment.show(supportFragmentManager, bottomSheetFragment.tag)
+            } else {
+                if(bottomSheetFragment.isVisible)
+                    bottomSheetFragment.dismiss()
+            }
         }
 
         PushDownAnim.setPushDownAnimTo(binding.btnReset).setOnClickListener {
@@ -61,11 +77,9 @@ class ForgotPasswordActivity : AppCompatActivity() {
                         }
                     }
                 } else {
-                    binding.emailResetPassword.error = "Email yang anda masukkan tidak valid"
+                    showErrorMessage("Ada kesalahan dalam autentikasi email")
                 }
             } else {
-                val bottomSheetFragment = CustomBottomSheetFragment()
-                bottomSheetFragment.isCancelable = false
                 bottomSheetFragment.show(supportFragmentManager, bottomSheetFragment.tag)
             }
         }
@@ -77,7 +91,7 @@ class ForgotPasswordActivity : AppCompatActivity() {
 
             override fun afterTextChanged(s: Editable?) {
                 val email = binding.emailResetPassword.text.toString()
-                binding.btnReset.isEnabled = email.isNotEmpty()
+                binding.btnReset.isEnabled = email.isNotEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches()
             }
         }
         binding.emailResetPassword.addTextChangedListener(textWatcher)

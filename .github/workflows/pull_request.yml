@@ -1,0 +1,38 @@
+name: App Release CI - Test Pull Request
+
+env:
+  main_project_module: app
+
+on:
+  pull_request:
+    types: [opened, reopened]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get commit hash
+        id: hash
+        uses: pr-mpt/actions-commit-hash@v2
+      - name: Checkout repository
+        uses: actions/checkout@v3.5.3
+      - name: Setup Java
+        uses: actions/setup-java@v3.11.0
+        with:
+          distribution: "temurin"
+          java-version: "17"
+          cache: "gradle"
+      - name: Change wrapper permissions
+        run: chmod +x ./gradlew
+      - name: Run gradle tests
+        run: ./gradlew test
+      - name: Build gradle project
+        run: ./gradlew build
+      - name: Build apk debug
+        run: ./gradlew assembleDebug
+      - name: Upload apk file artifact
+        uses: actions/upload-artifact@v3.1.2
+        with:
+          name: "Commit #${{ steps.hash.outputs.short }}"
+          path: app/build/outputs/apk/debug/app-debug.apk
+          retention-days: 7

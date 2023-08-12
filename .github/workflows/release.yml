@@ -1,0 +1,61 @@
+name: App Release CI
+
+env:
+  main_project_module: app
+
+on:
+  push:
+    tags:
+      - v*.*.*
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get tag name
+        id: tagname
+        run: echo "tag=${GITHUB_REF#refs/*/}" >> $GITHUB_OUTPUT
+      - name: Set current date as env variable
+        run: echo "date_today=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+      - name: Set repository name as env variable
+        run: echo "repository_name=$(echo '${{ github.repository }}' | awk -F '/' '{print $2}')" >> $GITHUB_ENV
+      - name: Checkout repository
+        uses: actions/checkout@v3.5.3
+      - name: Setup Java
+        uses: actions/setup-java@v3.11.0
+        with:
+          distribution: "temurin"
+          java-version: "17"
+          cache: "gradle"
+      - name: Change wrapper permissions
+        run: chmod +x ./gradlew
+      - name: Run gradle tests
+        run: ./gradlew test
+      - name: Build gradle project
+        run: ./gradlew build
+      - name: Build apk release
+        run: ./gradlew assembleRelease
+      - name: Sign apk
+        id: sign_app
+        uses: ilharp/sign-android-release@v1.0.4
+        with:
+          releaseDir: app/build/outputs/apk/release
+          signingKey: ${{ secrets.SIGNING_KEYSTORE }}
+          keyStorePassword: ${{ secrets.SIGNING_KEYSTORE_PASSWORD }}
+          keyAlias: ${{ secrets.SIGNING_KEY_ALIAS }}
+          keyPassword: ${{ secrets.SIGNING_KEY_PASSWORD }}
+      - name: Rename apk file
+        id: rename_apk
+        run: mv $apk $(dirname $apk)/$date_today-$repository_name-${{ steps.tagname.outputs.tag }}.apk && echo "app_release=$(dirname $apk)/$date_today-$repository_name-${{ steps.tagname.outputs.tag }}.apk" >> $GITHUB_OUTPUT
+        env:
+          apk: ${{ steps.sign_app.outputs.signedFile }}
+      - name: Release apk to GitHub
+        uses: softprops/action-gh-release@v0.1.15
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          token: ${{ secrets.TOKEN }}
+          name: Release ${{ steps.tagname.outputs.tag }}
+          body_path: CHANGELOG.md
+          files: ${{ steps.rename_apk.outputs.app_release }}
+          repository: Ahmadfzlbs/lp3i-presence

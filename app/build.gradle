@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.lp3icheck_in'
+    namespace 'com.ahmadfzlbs.lp3icheckin'
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.example.lp3icheck_in"
+        applicationId "com.ahmadfzlbs.lp3icheckin"
         minSdk 30
         targetSdk 33
         versionCode 1

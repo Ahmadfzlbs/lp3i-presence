@@ -1,4 +1,4 @@
-package com.example.lp3icheck_in.activity
+package com.ahmadfzlbs.lp3icheckin.activity
 
 import android.app.ProgressDialog
 import android.content.Context
@@ -11,15 +11,12 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Patterns
 import androidx.appcompat.app.AlertDialog
-import androidx.core.content.getSystemService
-import com.example.lp3icheck_in.R
-import com.example.lp3icheck_in.custom.CustomBottomSheetFragment
-import com.example.lp3icheck_in.databinding.ActivityForgotPasswordBinding
-import com.example.lp3icheck_in.service.NetworkManager
+import com.ahmadfzlbs.lp3icheckin.custom.CustomBottomSheetFragment
+import com.ahmadfzlbs.lp3icheckin.databinding.ActivityForgotPasswordBinding
+import com.ahmadfzlbs.lp3icheckin.service.NetworkManager
 import com.google.firebase.auth.FirebaseAuth
 import com.thekhaeng.pushdownanim.PushDownAnim
 import kotlinx.android.synthetic.main.activity_forgot_password.btnReset
-import kotlinx.android.synthetic.main.bottom_sheet_layout.textViewMessage
 
 class ForgotPasswordActivity : AppCompatActivity() {
 

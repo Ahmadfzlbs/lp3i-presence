@@ -1,4 +1,4 @@
-//package com.example.lp3icheck_in
+//package com.ahmadfzlbs.lp3icheckin
 //
 //import android.content.Context
 //import android.net.ConnectivityManager
@@ -58,7 +58,7 @@
 //    }
 //}
 
-package com.example.lp3icheck_in.service
+package com.ahmadfzlbs.lp3icheckin.service
 
 import android.content.Context
 import android.net.ConnectivityManager

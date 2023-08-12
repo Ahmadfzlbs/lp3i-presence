@@ -1,4 +1,4 @@
-package com.example.lp3icheck_in.fragment
+package com.ahmadfzlbs.lp3icheckin.fragment
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,8 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.lp3icheck_in.activity.LoginActivity
-import com.example.lp3icheck_in.databinding.FragmentOnboarding3Binding
+import com.ahmadfzlbs.lp3icheckin.activity.LoginActivity
+import com.ahmadfzlbs.lp3icheckin.databinding.FragmentOnboarding3Binding
 import com.thekhaeng.pushdownanim.PushDownAnim
 
 class OnboardingFragment3 : Fragment() {

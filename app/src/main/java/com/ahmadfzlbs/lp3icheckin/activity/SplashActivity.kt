@@ -1,11 +1,11 @@
-package com.example.lp3icheck_in.activity
+package com.ahmadfzlbs.lp3icheckin.activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import com.example.lp3icheck_in.R
+import com.ahmadfzlbs.lp3icheckin.R
 
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,11 +1,11 @@
-package com.example.lp3icheck_in.fragment
+package com.ahmadfzlbs.lp3icheckin.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.lp3icheck_in.R
+import com.ahmadfzlbs.lp3icheckin.R
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER

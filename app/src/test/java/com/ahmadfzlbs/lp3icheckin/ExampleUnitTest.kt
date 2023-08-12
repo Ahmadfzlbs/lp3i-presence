@@ -1,4 +1,4 @@
-package com.example.lp3icheck_in
+package com.ahmadfzlbs.lp3icheckin
 
 import org.junit.Test
 

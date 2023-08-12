@@ -1,7 +1,6 @@
-package com.example.lp3icheck_in.activity
+package com.ahmadfzlbs.lp3icheckin.activity
 
-import com.example.lp3icheck_in.custom.CustomBottomSheetFragment
-import android.annotation.SuppressLint
+import com.ahmadfzlbs.lp3icheckin.custom.CustomBottomSheetFragment
 import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
@@ -12,10 +11,9 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Patterns
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import com.example.lp3icheck_in.databinding.ActivityLoginBinding
-import com.example.lp3icheck_in.service.NetworkManager
+import com.ahmadfzlbs.lp3icheckin.databinding.ActivityLoginBinding
+import com.ahmadfzlbs.lp3icheckin.service.NetworkManager
 import com.google.firebase.auth.FirebaseAuth
 import com.thekhaeng.pushdownanim.PushDownAnim
 

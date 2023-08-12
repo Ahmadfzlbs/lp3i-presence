@@ -1,13 +1,12 @@
-package com.example.lp3icheck_in.custom
+package com.ahmadfzlbs.lp3icheckin.custom
 
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.DialogFragment
-import com.example.lp3icheck_in.R
-import com.example.lp3icheck_in.databinding.BottomSheetLayoutBinding
+import com.ahmadfzlbs.lp3icheckin.R
+import com.ahmadfzlbs.lp3icheckin.databinding.BottomSheetLayoutBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class CustomBottomSheetFragment : BottomSheetDialogFragment() {

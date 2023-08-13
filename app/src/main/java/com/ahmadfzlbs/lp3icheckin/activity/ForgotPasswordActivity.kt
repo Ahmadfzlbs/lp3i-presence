@@ -11,12 +11,15 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Patterns
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.getSystemService
+import com.ahmadfzlbs.lp3icheckin.R
 import com.ahmadfzlbs.lp3icheckin.custom.CustomBottomSheetFragment
 import com.ahmadfzlbs.lp3icheckin.databinding.ActivityForgotPasswordBinding
 import com.ahmadfzlbs.lp3icheckin.service.NetworkManager
 import com.google.firebase.auth.FirebaseAuth
 import com.thekhaeng.pushdownanim.PushDownAnim
 import kotlinx.android.synthetic.main.activity_forgot_password.btnReset
+import kotlinx.android.synthetic.main.bottom_sheet_layout.textViewMessage
 
 class ForgotPasswordActivity : AppCompatActivity() {
 
@@ -67,10 +70,18 @@ class ForgotPasswordActivity : AppCompatActivity() {
                     auth.sendPasswordResetEmail(email).addOnCompleteListener { task ->
                         binding.btnReset.isEnabled = true
                         progressDialog.dismiss()
+                        val exception = task.exception
                         if(task.isSuccessful){
                             showSuccessMessage("Email untuk reset kata sandi telah dikirim, silahkan periksa kotak masuk gmail anda !!")
                         } else {
-                            showErrorMessage("Pastikan anda memasukkan email yang terdaftar !!")
+                            if(exception != null){
+                                when {
+                                    exception.message?.contains("no user record") == true -> {
+                                        showErrorMessage("Pastikan anda memasukkan email yang terdaftar !!")
+                                    }
+                                    else -> showErrorMessage("Terjadi kesalahan saat autentikasi email")
+                                }
+                            }
                         }
                     }
                 } else {

@@ -1,6 +1,7 @@
 package com.ahmadfzlbs.lp3icheckin.activity
 
 import com.ahmadfzlbs.lp3icheckin.custom.CustomBottomSheetFragment
+import android.annotation.SuppressLint
 import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
@@ -11,6 +12,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Patterns
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.ahmadfzlbs.lp3icheckin.databinding.ActivityLoginBinding
 import com.ahmadfzlbs.lp3icheckin.service.NetworkManager
@@ -153,7 +155,9 @@ class LoginActivity : AppCompatActivity() {
         alertDialog.setTitle("Berhasil")
         alertDialog.setMessage(message)
         alertDialog.setPositiveButton("OK"){dialogInterface, which ->
-            dialogInterface.dismiss()
+            val i = Intent(this, LoginActivity::class.java)
+            startActivity(i)
+            finish()
         }
         alertDialog.setCancelable(false)
         alertDialog.show()
